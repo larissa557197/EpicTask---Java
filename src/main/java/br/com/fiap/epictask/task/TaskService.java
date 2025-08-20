@@ -22,4 +22,9 @@ public class TaskService {
     public List<Task> getAllTasks(){
         return  taskRepository.findAll();
     }
+
+    // serve pra persistir ou atualizar entidades no banco
+    public Task save(Task task){
+        return taskRepository.save(task);
+    }
 }
