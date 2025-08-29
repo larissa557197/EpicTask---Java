@@ -11,11 +11,13 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfiguration {
 
     @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
-        return http.authorizeHttpRequests( auth -> auth.anyRequest().authenticated()
-        )
-        .oauth2Login(Customizer.withDefaults())
-        .build();
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        return http
+                .authorizeHttpRequests( auth -> auth
+                        .anyRequest().authenticated()
+                )
+                .oauth2Login(Customizer.withDefaults())
+                .build();
     }
     
 }
