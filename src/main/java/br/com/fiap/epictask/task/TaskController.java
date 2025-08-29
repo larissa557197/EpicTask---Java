@@ -2,8 +2,11 @@ package br.com.fiap.epictask.task;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.context.properties.bind.Bindable;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,14 +24,15 @@ public class TaskController {
     private final MessageSource messageSource;
 
     @GetMapping
-    public String index(Model model){
+    public String index(Model model, @AuthenticationPrincipal OAuth2User user){
         var tasks = taskService.getAllTasks();
         model.addAttribute("tasks", tasks);
+        model.addAttribute("user", user);
         return "index";
     }
 
     @GetMapping("/form")
-    public String form(Task task){
+    public String form(){
         return "form";
     }
 
