@@ -16,6 +16,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests( auth -> auth
                         .anyRequest().authenticated()
                 )
+                .csrf(Customizer.withDefaults())
                 .oauth2Login(Customizer.withDefaults())
                 .build();
     }

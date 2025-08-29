@@ -32,7 +32,8 @@ public class TaskController {
     }
 
     @GetMapping("/form")
-    public String form(){
+    public String form(Model model){
+        model.addAttribute("task", new Task());
         return "form";
     }
 
